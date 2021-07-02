@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        nums = [1,2,2];
+        let len = nums.length, arr = new Array(), stack = new Array(), use = new Array(len).fill(false);
+        function search(now) {
+            if(now >= len) {
+                let a = new Array();
+                for(let i = 0; i < stack.length; i++) {
+                    a.push(stack[i]);
+                }
+                arr.push(a);
+                return ;
+            }
+            for(let i = 0; i < len; i++) {
+                if(!use[i] && (stack.length == 0 || nums[i] >= stack[stack.length - 1])) {
+                    use[i] = true;
+                    now++;
+                    stack.push(nums[i]);
+                    search(now);
+                    use[i] = false;
+                    now--;
+                    stack.pop();
+                }
+            }
+        }
+        for(let i = 0; i <= len; i++) {
+            search(i);
+        }
+        let n = {};
+        arr.forEach(item => {
+            n[item] = item;
+        })
+        console.log(Object.values(n));
+    </script>
+</body>
+
+</html>

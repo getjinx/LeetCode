@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let nums = [1,2,3], len = nums.length, arr = new Array(len).fill(false);
+        if(len == 1) {
+            return true;
+        }
+        arr[0] = true;
+        for(let i = 0; i < len; i++) {
+            if(!arr[i]) {
+                console.log(false);
+            }
+            else {
+                if(i + nums[i] >= len - 1) {
+                    console.log(true);
+                }
+                else {
+                    arr.fill(true, i+1, i+nums[i]+1);
+                    console.log(arr);
+                }
+            }
+        }
+        console.log(false);
+    </script>
+</body>
+</html>

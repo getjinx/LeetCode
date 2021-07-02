@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let p = head, len = 0;
+        while(p) {
+            len++;
+            p = p.next;
+        }
+        o = p = new ListNode(), p.next = head;
+        for(let i = 0; i < len; i++) {
+            if(i + n == len) {
+                let q = p.next.next;
+                p.next = q;
+                return o.next;
+            } 
+            else {
+                p = p.next;
+            }
+        }
+    </script>
+</body>
+</html>

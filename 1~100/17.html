@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        digits = "23";
+        let len = digits.length, arr = [['a','b','c'],['d','e','f'],['g','h','i'],['j','k','l'],['m','n','o'],['p','q','r','s'],['t','u','v'],['w','x','y','z']];
+        let str = "", dic = new Array();
+        function search(now) {
+            if(now == len) {
+                dic.push(str);
+                return
+            }
+            for(let i = 0; i < arr[digits[now] - 2].length; i++) {
+                str += arr[digits[now] - 2][i];
+                search(++now);
+                str = str.slice(0,str.length - 1);
+                --now;
+            }
+        }
+        search(0);
+        console.log(dic);
+    </script>
+</body>
+</html>

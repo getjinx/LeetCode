@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+</body>
+<style>
+    
+</style>
+<script>
+    let arr = new Array(), stack = new Array(), str = new Array("(",")"), left = 0, right = 0, n = 6;
+    function search(now) {
+        if(now > n) {
+            arr.push(stack.slice(0));
+            return ;
+        }
+        for(let i = 0; i < str.length; i++) {
+            if(i == 1 && right + 1 > left) {
+                return;
+            }
+            if(i == 0 && left == n/2) {
+                continue;
+            }
+            if(i == 1 && right == n/2) {
+                continue;
+            }
+            i == 0 ? left++ : right++;
+            stack.push(str[i]);
+            now++;
+            search(now);
+            i == 0 ? left-- : right--;
+            stack.pop();
+            now--;
+        }
+    }
+    search(1);
+    console.log(arr.map(v => v.join("")));
+</script>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let nums = [8,-2,-4,-1,-8,3,8,8,3,4,2,-9,-1,-3,-6,8,-3,9];
+        let maxNum = search(0);
+        function search(index) {
+            let lmax = rmax = lsum = rsum = 0;
+            for(let i = 1; ; i++) {
+                if(index - i >= 0) {
+                    lsum += nums[index - i];
+                    lmax = lmax > lsum ? lmax : lsum;
+                }
+                if(index + i <= nums.length - 1) {
+                    rsum += nums[index + i];
+                    rmax = rmax > rsum ? rmax : rsum;
+                }
+                if(index - i < 0 && index + i > nums.length - 1) {
+                    break;
+                }
+            }
+            console.log(index,lmax,rmax,nums[index]);
+            return nums[index] + lmax + rmax;
+        }
+        for(let i = 1; i < nums.length; i++) {
+            maxNum = maxNum > search(i) ? maxNum : search(i);
+        }
+        console.log(maxNum);
+    </script>
+</body>
+</html>

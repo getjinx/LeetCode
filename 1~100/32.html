@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let s = "()(()";
+        let len = s.length, stack = 0, max = 0, arr = new Array();
+        for(let i = 0; i < len; i++) {
+            if(s[i] == "(") {
+                stack++;
+                arr.push(i);
+            }
+            else {
+                if(stack > 0) {
+                    stack--;
+                    arr.pop();
+                }
+                else {
+                    arr.push(i);
+                }
+            }
+        }
+        let start = -1;
+        arr.push(len);
+        for(let i = 0; i < arr.length; i++) {
+            let now = arr[i] - start - 1;
+            max = max > now ? max : now;
+            start = arr[i];
+        }
+        console.log(max);
+    </script>
+</body>
+</html>

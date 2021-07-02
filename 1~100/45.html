@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style></style>
+
+<body>
+    <script>
+        const len = nums.length;
+        if (len < 2) {
+            return 0;
+        }
+        let count = new Array(len).fill(len);
+        count[0] = 0, count[1] = 1;
+        for (let i = 2; i < len; i++) {
+            for (let j = 0; j < i; j++) {
+                if (nums[j] + j >= i) {
+                    count[i] = Math.min(count[i], count[j] + 1);
+                }
+            }
+        }
+        return count[len - 1];
+    </script>
+</body>

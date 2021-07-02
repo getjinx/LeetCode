@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style></style>
+
+<body>
+    <script>
+        height = [8,5,4,1,8,9,3,0,0]
+        let maxh = Math.max(...height),index = height.indexOf(maxh);
+        function countleft(maxh,index) {
+            if(index <= 1 || maxh == 0) {
+                return 0;
+            }
+            let maxlh = 0, maxli = 0, lsum = 0;
+            for(let i = index - 1; i >= 0; i--) {
+                if(height[i] > maxlh) {
+                    maxlh = height[i];
+                    maxli = i;
+                }
+            }
+            for(let i = maxli + 1; i < index; i++) {
+                lsum += maxlh - height[i];
+            }
+            console.log(maxlh,maxli,lsum);
+            return lsum + countleft(maxlh, maxli);
+        }
+        function countright(maxh,index) {
+            if(index >= height.length - 2 || maxh == 0) {
+                return 0;
+            }
+            let maxrh = 0, maxri = 0, rsum = 0;
+            for(let i = index + 1; i < height.length; i++) {
+                if(height[i] > maxrh) {
+                    maxrh = height[i];
+                    maxri = i;
+                }
+            }
+            for(let i = index + 1; i < maxri; i++) {
+                rsum += maxrh - height[i];
+            }
+            console.log(maxrh,maxri,rsum);
+            return rsum + countright(maxrh, maxri);
+        }
+        console.log( countleft(maxh,index) + countright(maxh,index) );
+    </script>
+</body>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        nums = [1,2,4,3];
+        let arr = new Array(), stack = new Array(), len = nums.length, use = new Array(len).fill(false);
+        function search(now) {
+            if(now == len) {
+                let a = new Array();
+                for(let j = 0; j < stack.length; j++) {
+                    a[j] = stack[j];
+                }
+                arr.push(a);
+                return ;
+            }
+            for(let i = 0; i < len; i++) {
+                if(!use[i] && (stack.length == 0 || stack[stack.length-1] <= nums[i])) {
+                    stack.push(nums[i]);
+                    now++;
+                    use[i] = true;
+                    search(now);
+                    use[i] = false;
+                    now--;
+                    stack.pop();
+                }
+            }
+        }
+        for(let i = 0; i < len; i++) {
+            search(i);
+        }
+        arr.push([]);
+        console.log(arr);
+    </script>
+</body>
+</html>

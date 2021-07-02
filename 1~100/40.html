@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let candidates = [10,1,2,7,6,1,5], target = 8;
+        let sum = 0, stack = new Array(), arr = new Array(), use = new Array(candidates.length).fill(false);
+        candidates.sort((a,b) => a-b);
+        function search() {
+            if(sum == target) {
+                let a = new Array();
+                for(let i = 0; i < stack.length; i++) {
+                    a[i] = stack[i];
+                }
+                arr.push(a);
+                return ;
+            }
+            if(sum > target) {
+                return ;
+            }
+            for(let i = 0; i < candidates.length; i++) {
+                if(stack.length == 0 || (!use[i] && candidates[i] >= stack[stack.length - 1])) {
+                    sum += candidates[i];
+                    stack.push(candidates[i]);
+                    use[i] = true;
+                    search();
+                    use[i] = false;
+                    stack.pop();
+                    sum -= candidates[i];
+                }
+            }
+        }
+        search();
+        var duplicate =function(arr){
+            // 法一：es6
+            // let res=new Map();
+            // arr.forEach(item=>{
+            //     item.sort((a,b)=>a-b);
+            //     res.set(item.join(),item);
+            // });        
+            // return Array.from(res.values);
+
+            // 法二：
+            let res={}
+            arr.forEach(item=>{
+                item.sort((a,b)=>a-b);
+                res[item]=item;
+            });
+            return Object.values(res)
+        }
+        console.log(duplicate(arr));
+    </script>
+</body>
+</html>

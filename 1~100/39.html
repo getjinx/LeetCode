@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let candidates = [2,3,5], target = 8;
+        let sum = 0, stack = new Array(), arr = new Array();
+        function search() {
+            if(sum == target) {
+                let a = new Array();
+                for(let i = 0; i < stack.length; i++) {
+                    a[i] = stack[i];
+                }
+                arr.push(a);
+                return ;
+            }
+            if(sum > target) {
+                return ;
+            }
+            for(let i = 0; i < candidates.length; i++) {
+                if(stack.length == 0 || candidates[i] >= stack[stack.length-1]) {
+                    sum += candidates[i];
+                    stack.push(candidates[i]);
+                    search();
+                    stack.pop();
+                    sum -= candidates[i];
+                }
+            }
+        }
+        search();
+        console.log(arr);
+    </script>
+</body>
+</html>

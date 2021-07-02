@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        str = "-91283472332";
+        let num = parseInt(str);
+        console.log(num ? num > 0 ? num > (Math.pow(2, 31) - 1) ? (Math.pow(2, 31) - 1) : num : num < (0 - Math.pow(2, 31)) ? (0 - Math.pow(2, 31)) : num : 0);
+    </script>
+</body>
+
+</html>

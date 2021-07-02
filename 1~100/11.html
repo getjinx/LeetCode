@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let max = 0, len = height.length;
+        for(let i = 0; i < len; i++) {
+            for(let j = i + 1; j < len; j++) {
+                let num = Math.min(height[i], height[j]) * (j - i);
+                max = max > num ? max : num;
+            }
+        }
+        console.log(max);
+    </script>
+</body>
+
+</html>

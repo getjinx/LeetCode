@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        n = 8;
+        let use = new Array(n).fill(false), loc = new Array(n).fill(0), sum = 0;
+        function suit(now, i) {
+            for(let j = 0; j < now; j++) {
+                if(Math.abs(i - loc[j]) == now - j || i == loc[j]) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        function search(now) {
+            if(now == n) {
+                sum++; 
+                return;
+            }
+            for(let i = 0; i < n; i++) {
+                if(!use[i] && suit(now,i)) {
+                    use[i] = true;
+                    loc[now] = i;
+                    now++;
+                    search(now);
+                    use[i] = false;
+                    now--; 
+                }
+            }
+        }
+        search(0);
+        console.log(sum);
+    </script>
+</body>
+</html>

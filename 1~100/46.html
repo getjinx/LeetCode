@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style></style>
+
+<body>
+    <script>
+        const nums = [1,2,3,4],len = nums.length;
+        let use = new Array(len).fill(false), res = new Array(), stack = new Array();
+        function search(cur) {
+            if(cur == len) {
+                res.push(stack.slice(0,len));
+            }
+            else {
+                for(let i = 0; i < len; i++) {
+                    if(!use[i]) {
+                        stack.push(nums[i]);
+                        use[i] = true;
+                        search(++cur);
+                        --cur;
+                        use[i] = false;
+                        stack.pop();
+                    }
+                }
+            }
+        }
+        search(0);
+        console.log(res);
+    </script>
+</body>

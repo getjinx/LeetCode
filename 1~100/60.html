@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let n = 4, k = 9;
+        let use = new Array(n).fill(false), arr = new Array(), stack = new Array();
+        function search(now) {
+            if(now == n+1) {
+                arr.push(stack.join(""));
+                return ;
+            }
+            for(let i = 1; i <= n; i++) {
+                if(!use[i]) {
+                    stack.push(i);
+                    now++;
+                    use[i] = true;
+                    search(now);
+                    now--;
+                    use[i] = false;
+                    stack.pop();
+                }
+            }
+        }
+        search(1);
+        console.log(arr[k-1]);
+    </script>
+</body>
+</html>

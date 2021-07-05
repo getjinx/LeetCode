@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<br>
+<h2 class="title">剑指 Offer 07. 重建二叉树</h2>
+<h3 class="content">输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。
+</h3>
+<h3 class="example">
+    前序遍历 preorder = [3,9,20,15,7]<br>
+    中序遍历 inorder = [9,3,15,20,7]<br>
+    输出后序遍历 [9,15,7,20,3]
+    <h4 class="limit">0 <= 节点个数 <=5000</h4> <h4 class="solve">思路：模拟</h4>
+    <style>
+        .title {
+            color: lightcoral;
+        }
+
+        .content {
+            color: turquoise;
+        }
+
+        .example {
+            color: plum;
+        }
+
+        .limit {
+            color: lightskyblue;
+        }
+
+        .solve {
+            color: palevioletred;
+        }
+    </style>
+    <script>
+        let preorder = [3,9,20,15,7],inorder = [9,3,15,20,7];
+        function TreeNode(val) {
+            this.val = val;
+            this.left = this.right = null;
+        }
+        function build(num, arr) {
+            let index = arr.indexOf(num);
+            let leftArr = arr.slice(0, index);
+            let rightArr = arr.slice(index + 1);
+            let node = new TreeNode();
+            node.val = num;
+            node.left = leftArr.length == 0 ? null : build(preorder.find(item => leftArr.indexOf(item) != -1), leftArr);
+            node.right = rightArr.length == 0 ? null : build(preorder.find(item => rightArr.indexOf(item) != -1),
+                rightArr);
+            return node;
+        }
+        if (preorder.length == 0) {
+            console.log(null);
+        } 
+        else {
+           console.log(build(preorder[0], inorder));
+        }
+    </script>
+    </body>
+</html>

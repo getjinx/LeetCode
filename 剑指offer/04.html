@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<br>
+    <h2 class="title">剑指 Offer 04. 二维数组中的查找</h2>
+    <h3 class="content">在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个高效的函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。
+        </h3>
+    <h3 class="example">
+        现有矩阵 matrix 如下：<br>
+        [ <br>
+  [1,   4,  7, 11, 15],<br>
+  [2,   5,  8, 12, 19],<br>
+  [3,   6,  9, 16, 22],<br>
+  [10, 13, 14, 17, 24],<br>
+  [18, 21, 23, 26, 30]<br>
+]<br>
+给定 target = 5，返回 true。
+
+给定 target = 20，返回 false。 </h3>
+    <h4 class="limit">0 <= n <= 1000 <br>
+
+        0 <= m <= 1000</h4>
+    <h4 class="solve">思路：BFS</h4>
+    <style>
+        .title {
+            color: lightcoral;
+        }
+        .content {
+            color: turquoise;
+        }
+        .example {
+            color: plum;
+        }
+        .limit {
+            color: lightskyblue;
+        }
+        .solve {
+            color:palevioletred;
+        }
+    </style>
+    <script>
+        let matrix = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]], target = 30, queue = new Array();
+        let row = matrix.length, col = row === 0 ? 0 : matrix[0].length; 
+        if(row === 0 || col === 0) {
+            return false;
+        }
+        function bfs(x = 0, y = 0) {
+            if(x === row - 1 && y === col - 1 && matrix[x][y] !== target){
+                return false;
+            }
+            if(matrix[x][y] === target) {
+                return true;
+            }
+            else {
+                if(x == row - 1 && y == col - 1) {
+                    return ;
+                }
+                else if(x == row - 1) {
+                    queue.push([x, y+1]);
+                }
+                else if(y == col - 1) {
+                    queue.push([x+1, y]);
+                }
+                else if(x === 0){
+                    queue.push([x, y+1], [x+1, y])
+                }
+                else {
+                    queue.push([x+1, y])
+                }
+            }
+            let now = queue.shift();
+            return bfs(now[0], now[1]);
+        }
+        console.log(bfs());
+        console.log(queue);
+    </script>
+</body>
+</html>

@@ -1,42 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
 </head>
 <br>
-    <h2 class="title">剑指 Offer 06. 从尾到头打印链表</h2>
-    <h3 class="content">输入一个链表的头节点，从尾到头反过来返回每个节点的值（用数组返回）。
-        </h3>
-    <h3 class="example">
-        输入：head = [1,3,2]<br>
-输出：[2,3,1]</h3>
-    <h4 class="limit">0 <= 链表长度 <= 10000</h4>
-    <h4 class="solve">思路：链表遍历，逆序输出</h4>
-    <style>
-        .title {
-            color: lightcoral;
-        }
-        .content {
-            color: turquoise;
-        }
-        .example {
-            color: plum;
-        }
-        .limit {
-            color: lightskyblue;
-        }
-        .solve {
-            color:palevioletred;
-        }
-    </style>
-    <script>
-        let arr = new Array();
-        while(head) {
-            arr.push(head.val);
-            head = head.next;
-        }
-        return arr.reverse();
-    </script>
+<h2 class="title">剑指 Offer 06. 从尾到头打印链表</h2>
+<h3 class="content">输入一个链表的头节点，从尾到头反过来返回每个节点的值（用数组返回）。
+</h3>
+<h3 class="example">示例:<br>
+    输入：head = [1,3,2]<br>
+    输出：[2,3,1]</h3>
+<h4 class="limit">提示:<br>0 <= 链表长度 <=10000</h4> <h4 class="solve">思路：链表遍历，逆序输出</h4>
+<h4 class="code">代码:<br></h4>
+<style>
+    .title {
+        color: lightcoral;
+    }
+
+    .content {
+        color: turquoise;
+    }
+
+    .example {
+        color: plum;
+    }
+
+    .limit {
+        color: lightskyblue;
+    }
+
+    .solve {
+        color: palevioletred;
+    }
+
+    .code {
+        background-color: rgb(245, 245, 245);
+    }
+</style>
+<script src="./format.js"></script>
+<script>
+    function fun(head) {    //format1
+        let arr = new Array();  //format1
+        while (head) {  //format2
+            arr.push(head.val); //format2
+            head = head.next;   //format1
+        }   //format1
+        return arr.reverse();   //format0
+    }
+    document.querySelector(".code").innerHTML += format(fun.toString());
+    fun();
+</script>
 </body>
+
 </html>

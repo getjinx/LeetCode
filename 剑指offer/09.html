@@ -11,14 +11,15 @@
     ，分别完成在队列尾部插入整数和在队列头部删除整数的功能。(若队列中没有元素，deleteHead 操作返回 -1 )
 
 </h3>
-<h3 class="example">
+<h3 class="example">示例:<br>
     输入：<br>
     ["CQueue","deleteHead","appendTail","appendTail","deleteHead","deleteHead"]<br>
     [[],[],[5],[2],[],[]]<br>
     输出：[null,-1,null,null,5,2]<br>
-    <h4 class="limit">1 <= values <=10000 <br>
+    <h4 class="limit">提示:<br>1 <= values <=10000 <br>
             最多会对 appendTail、deleteHead 进行 10000 次调用</h4>
     <h4 class="solve">思路：模拟</h4>
+    <h4 class="code">代码:<br></h4>
     <style>
         .title {
             color: lightcoral;
@@ -39,30 +40,38 @@
         .solve {
             color: palevioletred;
         }
+
+        .code {
+            background-color: rgb(245, 245, 245);
+        }
     </style>
+    <script src="./format.js"></script>
     <script>
-        var CQueue = function () {
-            this.stack1 = [];
-            this.stack2 = [];
-        };
-
-        CQueue.prototype.appendTail = function (value) {
-            this.stack1.push(value);
-        };
-
-        CQueue.prototype.deleteHead = function () {
-            if (this.stack2.length) {
-                return this.stack2.pop();
-            }
-            if (!this.stack1.length) {
-                return -1;
-            }
-            while (this.stack1.length) {
-                this.stack2.push(this.stack1.pop());
-            }
-            return this.stack2.pop();
-
-        };
+        function fun() {    //format1
+            var CQueue = function () {  //format2
+                this.stack1 = [];   //format2
+                this.stack2 = [];   //format1
+            };  //format0
+            //format1
+            CQueue.prototype.appendTail = function (value) {    //format2
+                this.stack1.push(value);    //format1
+            };  //format0
+            //format1
+            CQueue.prototype.deleteHead = function () { //format2
+                if (this.stack2.length) {   //format3
+                    return this.stack2.pop();   //format2
+                }   //format2
+                if (!this.stack1.length) {  //format3
+                    return -1;  //format2
+                }   //format2
+                while (this.stack1.length) {    //format3
+                    this.stack2.push(this.stack1.pop());    //format2
+                }   //format2
+                return this.stack2.pop();   //format1
+            };  //format0
+        }
+        document.querySelector(".code").innerHTML += format(fun.toString());
+        fun();
     </script>
     </body>
 

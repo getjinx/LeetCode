@@ -6,16 +6,15 @@
     <title>Document</title>
 </head>
 <br>
-<h2 class="title">剑指 Offer 10- II. 青蛙跳台阶问题</h2>
-<h3 class="content">一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上一个 n 级的台阶总共有多少种跳法。<br>
-
-    答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。
+<h2 class="title">剑指 Offer 11. 旋转数组的最小数字(简单)</h2><hr>
+<h3 class="content">把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。输入一个递增排序的数组的一个旋转，输出旋转数组的最小元素。<br>
+    例如，数组 [3,4,5,1,2] 为 [1,2,3,4,5] 的一个旋转，该数组的最小值为1。  
 
 </h3>
 <h3 class="example">示例:<br>
-    输入：n = 7<br>
-    输出：21
-    <h4 class="limit">提示<br>0 <= n <=100</h4> <h4 class="solve">思路：DP、遍历</h4>
+    输入：[3,4,5,1,2]<br>
+    输出：1
+    <h4 class="limit">提示:<br>0 <= n <=100</h4> <h4 class="solve">思路：遍历、求最值</h4>
     <h4 class="code">代码:<br></h4>
     <style>
         .title {
@@ -37,7 +36,7 @@
         .solve {
             color: palevioletred;
         }
-
+        
         .code {
             background-color: rgb(245, 245, 245);
         }
@@ -45,16 +44,11 @@
     <script src="./format.js"></script>
     <script>
         function fun() {    //format1
-            let arr = new Array(0, 1),  //format2
-                n = 7;  //format1
-            for (let i = 2; i <= n + 1; i++) {  //format2
-                arr[i] = (arr[i - 1] + arr[i - 2]) % 1000000007;    //format1
-            }   //format1
-            console.log(arr[n + 1]);    //format0
+            let numbers = [3,4,5,1,2];  //format1
+            console.log(Math.min(...numbers));  //format0
         }
         document.querySelector(".code").innerHTML += format(fun.toString());
         fun();
     </script>
     </body>
-
 </html>

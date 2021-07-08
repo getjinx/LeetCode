@@ -12,13 +12,14 @@
     F(0) = 0,   F(1) = 1<br>
     F(N) = F(N - 1) + F(N - 2), 其中 N > 1.<br>
     斐波那契数列由 0 和 1 开始，之后的斐波那契数就是由之前的两数相加而得出。<br>
-    
+
     答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。<br>
 </h3>
-<h3 class="example">
+<h3 class="example">示例:<br>
     输入：n = 5<br>
     输出：5
-    <h4 class="limit">0 <= n <= 100</h4> <h4 class="solve">思路：模拟、遍历</h4>
+    <h4 class="limit">提示:<br>0 <= n <=100</h4> <h4 class="solve">思路：模拟、遍历</h4>
+    <h4 class="code">代码:<br></h4>
     <style>
         .title {
             color: lightcoral;
@@ -39,13 +40,23 @@
         .solve {
             color: palevioletred;
         }
-    </style>
-    <script>
-        let arr = new Array(0,1), n = 45;
-        for(let i = 2; i <= n; i++) {
-            arr[i]  = (arr[i - 1] + arr[i - 2]) % 1000000007;
+
+        .code {
+            background-color: rgb(245, 245, 245);
         }
-        console.log(arr[n]);
+    </style>
+    <script src="./format.js"></script>
+    <script>
+        function fun() {    //format1
+            let arr = new Array(0, 1),n = 45;   //format1
+            for (let i = 2; i <= n; i++) {  //format2
+                arr[i] = (arr[i - 1] + arr[i - 2]) % 1000000007;    //format1
+            }   //format1
+            console.log(arr[n]); //format0
+        }
+        document.querySelector(".code").innerHTML += format(fun.toString());
+        fun();
     </script>
     </body>
+
 </html>

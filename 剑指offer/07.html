@@ -9,11 +9,12 @@
 <h2 class="title">剑指 Offer 07. 重建二叉树</h2>
 <h3 class="content">输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。
 </h3>
-<h3 class="example">
+<h3 class="example">示例:<br>
     前序遍历 preorder = [3,9,20,15,7]<br>
     中序遍历 inorder = [9,3,15,20,7]<br>
     输出后序遍历 [9,15,7,20,3]
-    <h4 class="limit">0 <= 节点个数 <=5000</h4> <h4 class="solve">思路：模拟</h4>
+    <h4 class="limit">提示:<br>0 <= 节点个数 <=5000</h4> <h4 class="solve">思路：模拟</h4>
+    <h4 class="code">代码:<br></h4>
     <style>
         .title {
             color: lightcoral;
@@ -34,30 +35,43 @@
         .solve {
             color: palevioletred;
         }
+
+        .code {
+            background-color: rgb(245, 245, 245);
+        }
     </style>
+    <script src="./format.js"></script>
     <script>
-        let preorder = [3,9,20,15,7],inorder = [9,3,15,20,7];
-        function TreeNode(val) {
-            this.val = val;
-            this.left = this.right = null;
+        function fun() { //format1
+            let preorder = [3, 9, 20, 15, 7], //format2
+                inorder = [9, 3, 15, 20, 7]; //format0
+            //format1
+            function TreeNode(val) { //format2
+                this.val = val; //format2
+                this.left = this.right = null; //format1
+            } //format0
+            //format1
+            function build(num, arr) { //format2
+                let index = arr.indexOf(num); //format2
+                let leftArr = arr.slice(0, index); //format2
+                let rightArr = arr.slice(index + 1); //format2
+                let node = new TreeNode(); //format2
+                node.val = num; //format2
+                node.left = leftArr.length == 0 ? null : build(preorder.find(item => leftArr.indexOf(item) != -1),
+                    leftArr); //format2
+                node.right = rightArr.length == 0 ? null : build(preorder.find(item => rightArr.indexOf(item) != -1),
+                    rightArr); //format2
+                return node; //format1
+            } //format1
+            if (preorder.length == 0) { //format2
+                console.log(null); //format1
+            } else { //format2
+                console.log(build(preorder[0], inorder)); //format1
+            } //format0
         }
-        function build(num, arr) {
-            let index = arr.indexOf(num);
-            let leftArr = arr.slice(0, index);
-            let rightArr = arr.slice(index + 1);
-            let node = new TreeNode();
-            node.val = num;
-            node.left = leftArr.length == 0 ? null : build(preorder.find(item => leftArr.indexOf(item) != -1), leftArr);
-            node.right = rightArr.length == 0 ? null : build(preorder.find(item => rightArr.indexOf(item) != -1),
-                rightArr);
-            return node;
-        }
-        if (preorder.length == 0) {
-            console.log(null);
-        } 
-        else {
-           console.log(build(preorder[0], inorder));
-        }
+        document.querySelector(".code").innerHTML += format(fun.toString());
+        fun();
     </script>
     </body>
+
 </html>
